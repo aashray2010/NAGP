@@ -1,1 +1,13 @@
 Please find the following Documentation for Covid19 App
+
+We have three Main Headers in our Application.
+1. Dashboard : Displays all State Records of Covid-19 Affected States. Upon Clicking Drop Down you can view the Covid-19 records City-Wise for that respective state.
+2. Latest News : This Tab displays the latest On Going news related to Covid-19. 
+   2a. Admin can login using the following credentials to add new news Items
+          "username" : "admin"
+          "password" : "admin"
+   2b. Normal User can view the News Items published by the admin.
+3. Precautions Tab is a static component with displays all the Precautions that should be taken.
+
+
+Login session is being maintained which does not cause the user to logout while refreshing Window or navigating to any other Tab within the App. 
