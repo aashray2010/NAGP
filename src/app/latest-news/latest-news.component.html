@@ -1,0 +1,170 @@
+<br/>
+
+
+
+<div *ngIf="isAdmin">
+
+
+
+<div class="card">
+  <div class="card-header">
+    
+  </div>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="save()" [formGroup]="userForm">
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="newsTitle">
+          News Title
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="newsTitle"
+            type="text"
+            placeholder="Enter News Title"
+            formControlName="title"
+            [ngClass]="{
+              'is-invalid':
+                (userForm.get('title').touched || userForm.get('title').dirty) &&
+                !userForm.get('title').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="userForm.get('title').errors?.required">
+              Please enter News Title
+            </span>
+            <span *ngIf="userForm.get('title').errors?.minlength">
+              Name must be longer than 5 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="newsDescription">
+          News Description
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="newsDescription"
+            type="text"
+            placeholder="Enter Description"
+            formControlName="description"
+            [ngClass]="{
+              'is-invalid':
+                (userForm.get('description').touched ||
+                  userForm.get('description').dirty) &&
+                !userForm.get('description').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="userForm.get('description').errors?.required">
+              Please enter News Description
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="newsSummary">
+          Summary
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="newsSummary"
+            type="text"
+            placeholder="Enter Summary"
+            formControlName="summary"
+            [ngClass]="{
+              'is-invalid':
+                (userForm.get('summary').touched ||
+                  userForm.get('summary').dirty) &&
+                !userForm.get('summary').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="userForm.get('summary').errors?.required">
+              Please enter News Summary
+            </span>
+          </span>
+        </div>
+      </div> 
+
+      
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="fullnews">
+          Full News
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="fullnews"
+            type="text"
+            placeholder="Enter News Details"
+            formControlName="fullNews"
+            [ngClass]="{
+              'is-invalid':
+                (userForm.get('fullNews').touched ||
+                  userForm.get('fullNews').dirty) &&
+                !userForm.get('fullNews').valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="userForm.get('fullNews').errors?.required">
+              Please enter News Detail
+            </span>
+          </span>
+        </div>
+      </div> 
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button
+            class="btn btn-primary mr-3"
+            type="submit"
+            style="width:80px"
+            [title]="
+              userForm.valid
+                ? 'Save your entered data'
+                : 'Disabled until the form data is valid'
+            "
+            [disabled]="!userForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+<table *ngIf="newsList" class="table">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>News Title</th>
+      <th>Description</th>
+      <th>Summary</th>
+      <th>Full News Detail</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr
+        *ngFor="let news of newsList | keyvalue 
+              let i = index">
+      <td>{{i}}</td>
+      <td>{{news.value.title}}</td>
+      <td>{{news.value.description}}</td>
+      <td>{{news.value.summary}}</td>
+      <td>{{news.value.fullNews}}</td>
+      </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary" *ngIf="isAdmin==false || !isAdmin"(click)="login()"> Admin Login</button>
+<button class="btn btn-primary" *ngIf="isAdmin"(click)="logout()">logout</button>

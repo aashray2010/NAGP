@@ -1,0 +1,55 @@
+<br />
+<div class="dropdown-divider divider-text"></div>
+<div class="row panel-header header-text">
+  <span class="col-sm">Index</span>
+  <span class="col-sm">State</span>
+  <span class="col-sm">State Code</span>
+  <span class="col-sm">Active</span>
+  <span class="col-sm">Confirmed</span>
+  <span class="col-sm">Recovered</span>
+</div>
+<div class="dropdown-divider"></div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let statedata of sampledata; let i = index" (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+    <mat-expansion-panel-header (click)="onSelect(statedata.state)">
+      <div class="row panel-header">
+        <span class="col-sm">{{i}}</span>
+        <span class="col-sm">{{statedata.state}}</span>
+        <span class="col-sm">{{statedata.statecode}}</span>
+        <span class="col-sm">{{statedata.active}}</span>
+        <span class="col-sm">{{statedata.confirmed}}</span>
+        <span class="col-sm">{{statedata.recovered}}</span>
+      </div>
+    </mat-expansion-panel-header>
+    <table *ngIf="selectedstatedata" class="table">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>City</th>
+          <th>Active</th>
+          <th>Confirmed</th>
+          <th>Recovered</th>
+          <th>Deceased</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let statedatavalue of sampledatastates | keyvalue 
+                          let i = index">
+          <td>{{i}}</td>
+          <td>{{statedatavalue.key}}</td>
+          <td>{{statedatavalue.value.active}}</td>
+          <td>{{statedatavalue.value.confirmed}}</td>
+          <td>{{statedatavalue.value.deceased}}</td>
+          <td>{{statedatavalue.value.recovered}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+
+
+<!-- <td>{{statedatavalue.key}}: {{statedatavalue.value| json}}</td> -->
